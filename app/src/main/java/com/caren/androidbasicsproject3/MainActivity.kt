@@ -1,15 +1,20 @@
 package com.caren.androidbasicsproject3
 
+import android.content.Intent
+import android.graphics.drawable.Icon
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-
     companion object {
         fun getTasks(): List<String> {
             val templateTasks = mutableListOf<String>()
@@ -28,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        tasks.addAll(getTasks())
+        tasks.addAll(getTasks()).toString()
         val adapter = TaskItemAdapter(tasks)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -41,9 +46,23 @@ class MainActivity : AppCompatActivity() {
             val newTask = taskEntryEditTextField.text.toString()
             // Clear the EditText field
             taskEntryEditTextField.text.clear()
-
             tasks.add(newTask)
             adapter.notifyItemChanged(tasks.size - 1)
+
+
+
+                }
+
+
+            // clickPencil.setOnClickListener {
+            //  startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+            //  intent.putExtra("task", taskEntryEditTextField.text.toString())
         }
     }
-}
+
+
+
+
+
+
+
